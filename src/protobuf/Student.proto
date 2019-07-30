@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package sixthExample;
+option optimize_for= SPEED;
+option java_package= "sixthExample";
+option java_outer_classname="MyDataInfo";
+
+message MyMessage{
+     enum DataType{
+          StudentType =0;
+          DogType=1;
+          CatType=2;
+     }
+     DataType data_type=1;
+     oneof dataBody{ //oneof多个消息中只能出现一个
+          Student student=2;
+          Dog dog=3;
+          Cat cat=4;
+     }
+}
+message Student{
+     string name=1;
+     int32 age=2;
+     string address=3;
+}
+
+message Dog{
+     string name=1;
+     int32 age=2;
+}
+
+message Cat{
+     string name=1;
+     string city=2;
+}
