@@ -244,4 +244,11 @@ public class TestServerHandler extends SimpleChannelInboundHandler<MyDataInfo.My
 <img src="img/thrift3.png"/>
 <img src="img/thrift4.png"/>
 <img src="img/thrift5.png"/>
+<img src="img/thrift6.png"/>
+<img src="img/thrift7.png"/>
+<img src="img/thrift8.png"/>
+<img src="img/thrift9.png"/>
+<img src="img/thrift10.png"/>
+<img src="img/thrift11.png"/>
+<img src="img/thrift12.png"/>
  
