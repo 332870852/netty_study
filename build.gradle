@@ -17,4 +17,6 @@ dependencies {
     compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.6.1'
     //针对移动端
     compile group: 'com.google.protobuf', name: 'protobuf-java-util', version: '3.9.0'
+    compile group: 'org.apache.thrift', name: 'libthrift', version: '0.12.0'
+
 }

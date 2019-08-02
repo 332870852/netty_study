@@ -176,3 +176,72 @@ public class TestServerHandler extends SimpleChannelInboundHandler<MyDataInfo.My
 
     }
 }
+
+#3 使用安装thrift（thrift不支持无符号类型）
+ ##3.1到官网[thrift](http://www.apache.org/dyn/closer.cgi?path=/thrift/0.12.0/thrift-0.12.0.exe)下载安装thrift编译器，将thrift.exe路径设置到windows环境变量
+ ##3.2  引入thrift-java的插件包
+    compile group: 'org.apache.thrift', name: 'libthrift', version: '0.12.0'
+ ##3.3 编写thrift文件如下:
+    namespace java thrift.generated  //包的名字
+    typedef i16 short
+    typedef i32 int
+    typedef i64 long
+    typedef bool boolean
+    typedef string String
+    
+    struct Person{
+        1: optional String username,
+        2: optional int age,
+        3: optional boolean married
+    }
+    
+    exception DataException{
+        1: optional String message,
+        2: optional String callStack,
+        3: optional String date
+    }
+    
+    service PersonService{
+        Person getPersonByUsermae(1:required String username)throws (1:DataException dataException),
+        void savePerson(1:required Person person)throws(1:DataException dataException)
+    }
+ ##3.4 使用命令“ thrift --gen 语言 路径”    生成代码
+    如下 E:\何旭杰person\nettyIDEA\src\thrift>thrift --gen java data.thrift
+ 
+ ## 3.5 实现service接口
+    package com.xuge.thrift;
+    import org.apache.thrift.TException;
+    import thrift.generated.DataException;
+    import thrift.generated.Person;
+    import thrift.generated.PersonService;
+    
+    public class PersonServiceImpl implements PersonService.Iface {
+        @Override
+        public Person getPersonByUsermae(String username) throws DataException, TException {
+            System.out.println("Got Client Param: "+username);
+            Person person=new Person();
+            person.setUsername(username);
+            person.setAge(20);
+            person.setMarried(false);
+            return person;
+        }
+    
+        @Override
+        public void savePerson(Person person) throws DataException, TException {
+            System.out.println("Got Client Param: ");
+            System.out.println(person.getUsername());
+            System.out.println(person.getAge());
+            System.out.println(person.isMarried());
+            
+        }
+    }
+
+ ##3.6 编写服务端代码 和客户端代码，详细看com.xuge.thrift
+ 
+ ##3.7总结
+<img src="img/thrift1.png"/>
+<img src="img/thrift2.png"/>
+<img src="img/thrift3.png"/>
+<img src="img/thrift4.png"/>
+<img src="img/thrift5.png"/>
+ 
