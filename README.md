@@ -121,7 +121,7 @@ windows下的编译器 protoc-3.9.0-win64.zip，以及特定的语言编码器pr
             pipeline.addLast(new TestServerHandler());
         }
     }
-##2.3 客户端发送消息方式
+## 2.3 客户端发送消息方式
      @Override
         public void channelActive(ChannelHandlerContext ctx) throws Exception {
             int randomInt=new Random().nextInt(3);
@@ -177,11 +177,11 @@ public class TestServerHandler extends SimpleChannelInboundHandler<MyDataInfo.My
     }
 }
 
-#3 使用安装thrift（thrift不支持无符号类型）
- ##3.1到官网[thrift](http://www.apache.org/dyn/closer.cgi?path=/thrift/0.12.0/thrift-0.12.0.exe)下载安装thrift编译器，将thrift.exe路径设置到windows环境变量
- ##3.2  引入thrift-java的插件包
+# 3.使用安装thrift（thrift不支持无符号类型）
+## 3.1到官网[thrift](http://www.apache.org/dyn/closer.cgi?path=/thrift/0.12.0/thrift-0.12.0.exe)下载安装thrift编译器，将thrift.exe路径设置到windows环境变量
+## 3.2  引入thrift-java的插件包
     compile group: 'org.apache.thrift', name: 'libthrift', version: '0.12.0'
- ##3.3 编写thrift文件如下:
+## 3.3 编写thrift文件如下:
     namespace java thrift.generated  //包的名字
     typedef i16 short
     typedef i32 int
@@ -205,10 +205,10 @@ public class TestServerHandler extends SimpleChannelInboundHandler<MyDataInfo.My
         Person getPersonByUsermae(1:required String username)throws (1:DataException dataException),
         void savePerson(1:required Person person)throws(1:DataException dataException)
     }
- ##3.4 使用命令“ thrift --gen 语言 路径”    生成代码
+## 3.4 使用命令“ thrift --gen 语言 路径”    生成代码
     如下 E:\何旭杰person\nettyIDEA\src\thrift>thrift --gen java data.thrift
  
- ## 3.5 实现service接口
+## 3.5 实现service接口
     package com.xuge.thrift;
     import org.apache.thrift.TException;
     import thrift.generated.DataException;
@@ -236,9 +236,9 @@ public class TestServerHandler extends SimpleChannelInboundHandler<MyDataInfo.My
         }
     }
 
- ##3.6 编写服务端代码 和客户端代码，详细看com.xuge.thrift
+ ## 3.6 编写服务端代码 和客户端代码，详细看com.xuge.thrift
  
- ##3.7总结
+ ## 3.7总结
 <img src="img/thrift1.png"/>
 <img src="img/thrift2.png"/>
 <img src="img/thrift3.png"/>
