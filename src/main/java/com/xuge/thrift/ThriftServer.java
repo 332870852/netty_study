@@ -11,7 +11,7 @@ import thrift.generated.PersonService;
 public class ThriftServer {
 
     public static void main(String []args)throws Exception{
-        TNonblockingServerSocket socket=new TNonblockingServerSocket(10091);//使用非阻塞的socket
+        TNonblockingServerSocket socket=new TNonblockingServerSocket(10090);//使用非阻塞的socket
         THsHaServer.Args arg=new THsHaServer.Args(socket).minWorkerThreads(2).maxWorkerThreads(4);
         PersonService.Processor<PersonServiceImpl> processor=new PersonService.Processor<>
                 (new PersonServiceImpl());

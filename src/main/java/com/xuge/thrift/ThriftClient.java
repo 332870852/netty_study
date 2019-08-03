@@ -11,13 +11,13 @@ import thrift.generated.PersonService;
 public class ThriftClient {
 
     public static void main(String []args)throws Exception{
-        TTransport transport=new TFastFramedTransport(new TSocket("localhost",10091),600);
+        TTransport transport=new TFastFramedTransport(new TSocket("127.0.0.1",10093),600);
         TProtocol protocol=new TCompactProtocol(transport);
         PersonService.Client client=new PersonService.Client(protocol);
 
         try {
             transport.open();
-            Person person=client.getPersonByUsermae("张三");
+            Person person=client.getPersonByUsername("张三");
             System.out.println(person.getUsername());
             System.out.println(person.getAge());
             System.out.println(person.isMarried());

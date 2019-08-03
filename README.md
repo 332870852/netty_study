@@ -252,3 +252,43 @@ public class TestServerHandler extends SimpleChannelInboundHandler<MyDataInfo.My
 <img src="img/thrift11.png"/>
 <img src="img/thrift12.png"/>
  
+ # 3. thrift 实战 java做服务端，python客户端开发
+    使用命令生成python代码
+    thrift --gen py src/thrift/data.thrift
+## 3.1 下载python的thrift依赖[python-thrift](http://www.apache.org/dyn/closer.cgi?path=/thrift/0.12.0/thrift-0.12.0.tar.gz) [或版本10](http://www.apache.org/dyn/closer.cgi?path=/thrift/0.10.0/thrift-0.10.0.tar.gz)
+##进入下载包的路径
+    /thrift-0.10.0\lib\py 接着输入命令sudo python setup.py install安装
+    
+##3.2 编写python客户端代码
+    from py.thrift.generated import PersonService
+    from py.thrift.generated import ttypes
+    
+    from thrift import Thrift
+    from thrift.transport import TSocket, TTransport
+    from thrift.protocol import TCompactProtocol
+    
+    try:
+        tSocket=TSocket.TSocket('localhost',10092)
+        tSocket.setTimeout(600)
+        transport=TTransport.TFramedTransport(tSocket)
+        protocol=TCompactProtocol.TCompactProtocol(transport)
+        client=PersonService.Client(protocol)
+    
+        transport.open()
+        person=client.getPersonByUsermae('张三')
+        print(person.username)
+        print(person.age)
+        print(person.married)
+    
+        print('--------')
+        newPerson=ttypes.Person()
+        newPerson.username='lisi'
+        newPerson.age=30
+        newPerson.married=True
+        client.savePerson(newPerson)
+        transport.close()
+    
+    except Thrift.TException as tx:
+        print('%s'% tx.message)
+# 4. gRPC下载和使用
+    

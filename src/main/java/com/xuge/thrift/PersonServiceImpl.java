@@ -6,7 +6,7 @@ import thrift.generated.PersonService;
 
 public class PersonServiceImpl implements PersonService.Iface {
     @Override
-    public Person getPersonByUsermae(String username) throws DataException, TException {
+    public Person getPersonByUsername(String username) throws DataException, TException {
         System.out.println("Got Client Param: "+username);
         Person person=new Person();
         person.setUsername(username);

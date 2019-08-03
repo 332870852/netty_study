@@ -1,4 +1,5 @@
 namespace java thrift.generated  //包的名字
+namespace py py.thrift.generated //python
 typedef i16 short
 typedef i32 int
 typedef i64 long
@@ -18,6 +19,6 @@ exception DataException{
 }
 
 service PersonService{
-    Person getPersonByUsermae(1:required String username)throws (1:DataException dataException),
+    Person getPersonByUsername(1:required String username)throws (1:DataException dataException),
     void savePerson(1:required Person person)throws(1:DataException dataException)
 }
