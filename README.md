@@ -290,5 +290,6 @@ public class TestServerHandler extends SimpleChannelInboundHandler<MyDataInfo.My
     
     except Thrift.TException as tx:
         print('%s'% tx.message)
-# 4. gRPC下载和使用
+# 4. gRPC下载和使用 [gRPC官网](https://grpc.io/docs/quickstart/java/)
+
     
