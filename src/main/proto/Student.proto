@@ -7,6 +7,9 @@ option java_multiple_files=true;
 service StudentService{
     rpc GetRealNameByUsername(MyRequest) returns (MyResponse){}
     rpc GetStudentsByAge(StudentRequest) returns(stream StudentResponse){}
+    rpc GetStudentsWrapperByAges(stream StudentRequest) returns (StudentResponseList){}
+    //双向流式数据传递
+    rpc BiTalk(stream StreamRequest) returns(stream StreamResponse){}
 }
 
 message MyRequest{
@@ -24,4 +27,17 @@ message StudentResponse{
     string name=1;
     int32 age=2;
     string city=3;
+}
+
+//集合
+message StudentResponseList{
+    repeated StudentResponse studentResponse=1;
+}
+
+message StreamRequest{
+    string request_info=1;
+}
+
+message StreamResponse{
+    string response_info=1;
 }
