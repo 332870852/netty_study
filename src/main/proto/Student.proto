@@ -6,6 +6,7 @@ option java_outer_classname="StudentProto";
 option java_multiple_files=true;
 service StudentService{
     rpc GetRealNameByUsername(MyRequest) returns (MyResponse){}
+    rpc GetStudentsByAge(StudentRequest) returns(stream StudentResponse){}
 }
 
 message MyRequest{
@@ -13,4 +14,14 @@ message MyRequest{
 }
 message MyResponse{
     string realname=2;
+}
+
+message StudentRequest{
+    int32 age=1;
+}
+
+message StudentResponse{
+    string name=1;
+    int32 age=2;
+    string city=3;
 }
