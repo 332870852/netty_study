@@ -291,5 +291,39 @@ public class TestServerHandler extends SimpleChannelInboundHandler<MyDataInfo.My
     except Thrift.TException as tx:
         print('%s'% tx.message)
 # 4. gRPC下载和使用 [gRPC官网](https://grpc.io/docs/quickstart/java/)
-
+## 4.1引入grpc-java的依赖 [依赖](https://github.com/grpc/grpc-java)
+    io.grpc:grpc-netty-shaded:1.22.1
+    io.grpc:grpc-protobuf:1.22.1
+    io.grpc:grpc-stub:1.22.1
+## 4.2 在gradle 引入protobuf插件
+    apply plugin: 'com.google.protobuf'
+    
+    protobuf {
+        protoc {
+            artifact = "com.google.protobuf:protoc:3.2.0"
+        }
+        plugins {
+            grpc {
+                artifact = 'io.grpc:protoc-gen-grpc-java:1.4.0'
+            }
+        }
+        //自定义文件生成路径
+        generateProtoTasks.generatedFilesBaseDir = "src"
+        generateProtoTasks {
+            all()*.plugins {
+                grpc {
+                    //自定义文件生成路径
+                    setOutputSubDir 'java'
+                }
+            }
+        }
+    }
+      
+     //注意如果编译出错，将plugins {
+                    id 'java'
+                 } 改成apply plugin: 'java'
+## 4.3 建立默认目录放在proto文件
+    src/main/proto
+## 4.4 proto文件编写完成之后，通过Tasks里面的generateProto命令生成代码文件
+    
     
