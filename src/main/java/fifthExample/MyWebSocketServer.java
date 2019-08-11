@@ -9,7 +9,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
-//服务端
+//web服务端
 public class MyWebSocketServer {
 
     public static void main(String[] args) throws Exception {

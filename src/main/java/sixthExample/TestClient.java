@@ -6,7 +6,7 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import secondExample.MyClientInitallizer;
-
+//pb 例子
 public class TestClient {
 
     public static void main(String []args)throws Exception{

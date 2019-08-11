@@ -11,7 +11,7 @@ import secondExample.MyClientInitallizer;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-//客户端
+//聊天客户端
 public class MyChatClient {
 
     public static void main(String []args)throws Exception{
@@ -21,7 +21,7 @@ public class MyChatClient {
             bootstrap.group(eventExecutors).channel(NioSocketChannel.class).
                     handler(new MyChatClientInitalizer());
             //连接
-            Channel channel= bootstrap.connect("localhost",10088).sync().channel();
+            Channel channel= bootstrap.connect("localhost",5000).sync().channel();
             BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
             for(;;){
                 channel.writeAndFlush(br.readLine()+"\r\n");
